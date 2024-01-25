@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
 import { ServerModule } from '@angular/platform-server';
 import { META_REDUCERS } from '@ngrx/store';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { configurationMeta } from 'ish-core/configurations/configuration.meta';
 import { DATA_RETENTION_POLICY } from 'ish-core/configurations/injection-keys';
@@ -35,7 +36,7 @@ export class UniversalErrorHandler implements ErrorHandler {
 }
 
 @NgModule({
-  imports: [AppModule, ServerModule],
+  imports: [AppModule, ServerModule, NgxStripeModule.forRoot()],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UniversalMockInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: UniversalCacheInterceptor, multi: true },

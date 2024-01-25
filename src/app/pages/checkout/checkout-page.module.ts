@@ -32,17 +32,29 @@ const checkoutPageRoutes: Routes = [
         data: { checkoutStep: 2 },
         component: CheckoutShippingPageModule.component,
       },
-      {
-        path: 'payment',
-        canActivate: [checkoutPageGuard],
-        data: { checkoutStep: 3 },
-        component: CheckoutPaymentPageModule.component,
-      },
+      // { // Nice update
+      //   path: 'payment',
+      //   canActivate: [checkoutPageGuard],
+      //   data: { checkoutStep: 3 },
+      //   component: CheckoutPaymentPageModule.component,
+      // },
+      // {
+      //   path: 'review',
+      //   canActivate: [checkoutPageGuard],
+      //   data: { checkoutStep: 4 },
+      //   component: CheckoutReviewPageModule.component,
+      // },
       {
         path: 'review',
         canActivate: [checkoutPageGuard],
-        data: { checkoutStep: 4 },
+        data: { checkoutStep: 3 },
         component: CheckoutReviewPageModule.component,
+      },
+      {
+        path: 'payment',
+        canActivate: [checkoutPageGuard],
+        data: { checkoutStep: 4 },
+        component: CheckoutPaymentPageModule.component,
       },
       {
         path: 'receipt',

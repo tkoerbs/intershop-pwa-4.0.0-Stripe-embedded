@@ -18,6 +18,7 @@ import {
 import { PaymentMethodMapper } from 'ish-core/models/payment-method/payment-method.mapper';
 import { PaymentMethod } from 'ish-core/models/payment-method/payment-method.model';
 import { Payment } from 'ish-core/models/payment/payment.model';
+import { StripeInfo } from 'ish-core/models/stripe-info/stripe-info.nice.model';
 import { ApiService, unpackEnvelope } from 'ish-core/services/api/api.service';
 import { BasketService } from 'ish-core/services/basket/basket.service';
 import { getCurrentLocale } from 'ish-core/store/core/configuration';
@@ -368,5 +369,39 @@ export class PaymentService {
         .put(`customers/-/payments/${paymentInstrument.id}`, body)
         .pipe(map(() => paymentInstrument));
     }
+  }
+
+  /**
+   * Nice update Create Stripe Session.
+   *
+   * @returns  StripeInfo after creation.
+   */
+  createStripeSession(): Observable<StripeInfo> {
+    return this.apiService.post<StripeInfo>(
+      `stripe-session-create`,
+      {},
+      {
+        headers: new HttpHeaders({
+          'content-type': 'application/json',
+          Accept: 'application/json',
+        }),
+      }
+    );
+  }
+
+  /**
+   * Nice update Get Stripe Api Key.
+   *
+   * @returns  publicAPIkey after creation.
+   */
+  getStripeApiKey(): Observable<string> {
+    return this.apiService
+      .get(`stripe-configurations`, {
+        headers: new HttpHeaders({
+          'content-type': 'application/json',
+          Accept: 'application/json',
+        }),
+      })
+      .pipe(map(({ publicAPIkey }) => publicAPIkey));
   }
 }

@@ -13,9 +13,15 @@ import {
   createBasketPayment,
   createBasketPaymentFail,
   createBasketPaymentSuccess,
+  createStripeSession,
+  createStripeSessionFail,
+  createStripeSessionSuccess,
   deleteBasketPayment,
   deleteBasketPaymentFail,
   deleteBasketPaymentSuccess,
+  getStripeApiKey,
+  getStripeApiKeyFail,
+  getStripeApiKeySuccess,
   loadBasket,
   loadBasketEligiblePaymentMethods,
   loadBasketEligiblePaymentMethodsFail,
@@ -182,6 +188,36 @@ export class BasketPaymentEffects {
         this.paymentService.updateConcardisCvcLastUpdated(paymentInstrument).pipe(
           map(pi => updateConcardisCvcLastUpdatedSuccess({ paymentInstrument: pi })),
           mapErrorToAction(updateConcardisCvcLastUpdatedFail)
+        )
+      )
+    )
+  );
+
+  /**
+   * Nice Update Create stripe session for current basket.
+   */
+  createStripeSession$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createStripeSession),
+      concatMap(() =>
+        this.paymentService.createStripeSession().pipe(
+          map(info => createStripeSessionSuccess({ stripeInfo: info })),
+          mapErrorToAction(createStripeSessionFail)
+        )
+      )
+    )
+  );
+
+  /**
+   * Nice Update Create stripe session for current basket.
+   */
+  getStripeApiKey$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getStripeApiKey),
+      concatMap(() =>
+        this.paymentService.getStripeApiKey().pipe(
+          map(apiKey => getStripeApiKeySuccess({ stripeApiKey: apiKey })),
+          mapErrorToAction(getStripeApiKeyFail)
         )
       )
     )

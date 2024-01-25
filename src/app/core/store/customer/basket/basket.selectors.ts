@@ -91,3 +91,7 @@ export const isBasketInvoiceAndShippingAddressEqual = createSelector(
   getBasketShippingAddress,
   AddressHelper.equal
 );
+
+// Nice update
+export const getBasketStripeInfo = createSelector(getBasketState, basket => basket?.stripeInfo);
+export const selectStripeApiKey = createSelector(getBasketState, basket => basket?.stripeApiKey);

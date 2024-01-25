@@ -16,10 +16,12 @@ import {
   addMessageToMerchant,
   addPromotionCodeToBasket,
   assignBasketAddress,
+  clearStripeSession,
   continueCheckout,
   createBasket,
   createBasketAddress,
   createBasketPayment,
+  createStripeSession,
   deleteBasketAttribute,
   deleteBasketItem,
   deleteBasketPayment,
@@ -33,14 +35,17 @@ import {
   getBasketLoading,
   getBasketPromotionError,
   getBasketShippingAddress,
+  getBasketStripeInfo,
   getBasketValidationResults,
   getCurrentBasket,
+  getStripeApiKey,
   getSubmittedBasket,
   isBasketInvoiceAndShippingAddressEqual,
   loadBasketEligiblePaymentMethods,
   loadBasketEligibleShippingMethods,
   loadBasketWithId,
   removePromotionCodeFromBasket,
+  selectStripeApiKey,
   setBasketAttribute,
   setBasketDesiredDeliveryDate,
   setBasketPayment,
@@ -320,4 +325,23 @@ export class CheckoutFacade {
   updateConcardisCvcLastUpdated(paymentInstrument: PaymentInstrument) {
     this.store.dispatch(updateConcardisCvcLastUpdated({ paymentInstrument }));
   }
+
+  //Nice update Fetch Stripe Api key
+  getStripeApiKey() {
+    this.store.dispatch(getStripeApiKey());
+  }
+
+  //Nice update Create Stripe payment session
+  createStripeSession() {
+    this.store.dispatch(createStripeSession());
+  }
+
+  //Nice clear Stripe payment session from store
+  clearStripeSession() {
+    this.store.dispatch(clearStripeSession());
+  }
+
+  //Nice update
+  getStripeInfo$ = this.store.pipe(select(getBasketStripeInfo));
+  getStripeApiKey$ = this.store.pipe(select(selectStripeApiKey));
 }

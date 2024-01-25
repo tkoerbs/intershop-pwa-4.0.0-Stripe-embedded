@@ -5,7 +5,8 @@ export enum CheckoutStepType {
   BeforeCheckout,
   Addresses,
   Shipping,
-  Payment,
+  // Payment,  //Nice update
   Review,
+  Payment,
   Receipt,
 }

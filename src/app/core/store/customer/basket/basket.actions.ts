@@ -14,6 +14,7 @@ import { PaymentInstrument } from 'ish-core/models/payment-instrument/payment-in
 import { PaymentMethod } from 'ish-core/models/payment-method/payment-method.model';
 import { SkuQuantityType } from 'ish-core/models/product/product.helper';
 import { ShippingMethod } from 'ish-core/models/shipping-method/shipping-method.model';
+import { StripeInfo } from 'ish-core/models/stripe-info/stripe-info.nice.model';
 import { BasketUpdateType } from 'ish-core/services/basket/basket.service';
 import { httpError, payload } from 'ish-core/utils/ngrx-creators';
 
@@ -303,3 +304,24 @@ export const setBasketDesiredDeliveryDateFail = createAction(
 export const setBasketDesiredDeliveryDateSuccess = createAction(
   '[Basket API] Add or Update Basket Desired Delivery Date Success'
 );
+
+// Stripe update
+export const getStripeApiKey = createAction('[Basket APi] Get Stripe Api Key');
+
+export const getStripeApiKeySuccess = createAction(
+  '[Basket APi] Get Stripe Api Key Success',
+  payload<{ stripeApiKey: string }>()
+);
+
+export const getStripeApiKeyFail = createAction('[Basket APi] Get Stripe Api Key Fail', httpError());
+
+export const createStripeSession = createAction('[Basket APi] Create Stripe Session');
+
+export const clearStripeSession = createAction('[Basket Store] Clear Stripe Session');
+
+export const createStripeSessionSuccess = createAction(
+  '[Basket APi] Create Stripe Session Success',
+  payload<{ stripeInfo: StripeInfo }>()
+);
+
+export const createStripeSessionFail = createAction('[Basket APi] Create Stripe Session Fail', httpError());

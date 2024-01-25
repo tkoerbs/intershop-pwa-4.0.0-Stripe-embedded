@@ -33,7 +33,7 @@
           "error",
           {
             "type": "element",
-            "prefix": ["ish"],
+            "prefix": ["ish", "custom"],
             "style": "kebab-case"
           }
         ],
@@ -41,7 +41,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": ["ish"],
+            "prefix": ["ish", "custom"],
             "style": "camelCase"
           }
         ],
@@ -403,7 +403,7 @@
             "warnUnmatched": false,
             "reusePatterns": {
               "name": "[a-z][a-z0-9]*(?:-[a-z][a-z0-9]*)*",
-              "theme": "(?:(?:\\.(?:b2b|b2c))*|\\.all)"
+              "theme": "(?:(?:\\.(?:b2b|b2c|nice))*|\\.all)"
             },
             "pathPatterns": [
               "^.*/src/environments/environment(\\.\\w+)?\\.ts$",

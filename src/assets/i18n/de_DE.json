@@ -699,7 +699,7 @@
   "checkout.orderReferenceId.success.message": "Ihre Bestellungs-ID wurde übernommen.",
   "checkout.orderReferenceId.title": "Bestellungs-ID eingeben",
   "checkout.order_details.heading": "Bestellübersicht",
-  "checkout.order_review.heading.text": "Prüfen Sie die Details Ihrer Bestellung und nehmen Sie, falls notwendig, noch Änderungen vor. Klicken Sie auf \"Bestellung absenden\", um den Bestellvorgang abzuschließen.",
+  "checkout.order_review.heading.text": "Prüfen Sie die Details Ihrer Bestellung und nehmen Sie, falls notwendig, noch Änderungen vor. Klicken Sie auf \"Bestellung absenden\", um den Bestellvorgang abzuschließen und fahren Sie mit der Zahlung fort.",
   "checkout.order_review.heading.title": "Ihre Bestelldaten prüfen",
   "checkout.order_review.send.button": "Bestellung absenden",
   "checkout.order_summary.heading": "Bestellübersicht",
@@ -1184,5 +1184,6 @@
   "tacton.submit.error.message": "Beim Verarbeiten Ihrer Anfrage ist ein technischer Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
   "tacton.submit.success.message": "Ihre Anfrage wurde erfolgreich versendet. Wir werden <strong>{{0}}</strong> per E-Mail über den Status Ihrer Anfrage informieren.",
   "tacton.undo.tooltip": "Wiederherstellen",
-  "textarea.max_limit": "Ihre Nachricht: {{0}} Zeichen verbleibend."
+  "textarea.max_limit": "Ihre Nachricht: {{0}} Zeichen verbleibend.",
+  "nice.checkout.widget.payment_method.not_selected": "Zahlungsmethode nicht ausgewählt"
 }

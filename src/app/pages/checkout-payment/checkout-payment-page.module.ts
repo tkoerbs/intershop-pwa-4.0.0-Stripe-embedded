@@ -5,6 +5,7 @@ import { SharedModule } from 'ish-shared/shared.module';
 
 import { CheckoutPaymentPageComponent } from './checkout-payment-page.component';
 import { CheckoutPaymentComponent } from './checkout-payment/checkout-payment.component';
+import { PaymentStripeCreditCardComponent } from './checkout-payment/stripe/payment-stripe-credit-card.component.nice';
 import { PaymentSaveCheckboxComponent } from './formly/payment-save-checkbox/payment-save-checkbox.component';
 import { serverValidationExtension } from './formly/server-validation.extension';
 import { PaymentConcardisCreditcardCvcDetailComponent } from './payment-concardis-creditcard-cvc-detail/payment-concardis-creditcard-cvc-detail.component';
@@ -33,6 +34,7 @@ import { PaymentPayoneCreditcardComponent } from './payment-payone-creditcard/pa
     PaymentParameterFormComponent,
     PaymentPayoneCreditcardComponent,
     PaymentSaveCheckboxComponent,
+    PaymentStripeCreditCardComponent, // Nice update
   ],
 })
 export class CheckoutPaymentPageModule {

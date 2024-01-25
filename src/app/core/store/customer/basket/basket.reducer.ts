@@ -7,6 +7,7 @@ import { Basket } from 'ish-core/models/basket/basket.model';
 import { HttpError } from 'ish-core/models/http-error/http-error.model';
 import { PaymentMethod } from 'ish-core/models/payment-method/payment-method.model';
 import { ShippingMethod } from 'ish-core/models/shipping-method/shipping-method.model';
+import { StripeInfo } from 'ish-core/models/stripe-info/stripe-info.nice.model';
 import { createOrderSuccess } from 'ish-core/store/customer/orders';
 import { setErrorOn, setLoadingOn, unsetLoadingAndErrorOn, unsetLoadingOn } from 'ish-core/utils/ngrx-creators';
 
@@ -19,6 +20,7 @@ import {
   addPromotionCodeToBasketFail,
   addPromotionCodeToBasketSuccess,
   assignBasketAddress,
+  clearStripeSession,
   continueCheckout,
   continueCheckoutFail,
   continueCheckoutSuccess,
@@ -27,6 +29,9 @@ import {
   createBasketPaymentFail,
   createBasketPaymentSuccess,
   createBasketSuccess,
+  createStripeSession,
+  createStripeSessionFail,
+  createStripeSessionSuccess,
   deleteBasketAttribute,
   deleteBasketAttributeFail,
   deleteBasketAttributeSuccess,
@@ -36,6 +41,8 @@ import {
   deleteBasketPayment,
   deleteBasketPaymentFail,
   deleteBasketPaymentSuccess,
+  getStripeApiKeyFail,
+  getStripeApiKeySuccess,
   loadBasket,
   loadBasketByAPIToken,
   loadBasketEligiblePaymentMethods,
@@ -97,6 +104,8 @@ export interface BasketState {
   lastTimeProductAdded: number;
   validationResults: BasketValidationResultType;
   submittedBasket: Basket;
+  stripeInfo: StripeInfo; // Nice update
+  stripeApiKey: string; // Nice update
 }
 
 const initialValidationResults: BasketValidationResultType = {
@@ -116,6 +125,8 @@ const initialState: BasketState = {
   lastTimeProductAdded: undefined,
   validationResults: initialValidationResults,
   submittedBasket: undefined,
+  stripeInfo: undefined, // Nice update
+  stripeApiKey: undefined, // Nice update
 };
 
 export const basketReducer = createReducer(
@@ -147,9 +158,16 @@ export const basketReducer = createReducer(
     updateConcardisCvcLastUpdated,
     startCheckout,
     mergeBasketInProgress,
-    setBasketDesiredDeliveryDate
+    setBasketDesiredDeliveryDate,
+    createStripeSession // Nice update
   ),
-  unsetLoadingOn(addPromotionCodeToBasketSuccess, addPromotionCodeToBasketFail, loadBasketSuccess),
+  unsetLoadingOn(
+    addPromotionCodeToBasketSuccess,
+    addPromotionCodeToBasketFail,
+    loadBasketSuccess,
+    createStripeSessionFail, // Nice update
+    getStripeApiKeyFail // Nice update
+  ),
   unsetLoadingAndErrorOn(
     mergeBasketSuccess,
     updateBasketItemSuccess,
@@ -168,7 +186,9 @@ export const basketReducer = createReducer(
     updateConcardisCvcLastUpdatedSuccess,
     submitBasketSuccess,
     startCheckoutSuccess,
-    setBasketDesiredDeliveryDateSuccess
+    setBasketDesiredDeliveryDateSuccess,
+    createStripeSessionSuccess, // Nice update
+    getStripeApiKeySuccess // Nice Update
   ),
   setErrorOn(
     mergeBasketFail,
@@ -191,7 +211,8 @@ export const basketReducer = createReducer(
     updateConcardisCvcLastUpdatedFail,
     submitBasketFail,
     startCheckoutFail,
-    setBasketDesiredDeliveryDateFail
+    setBasketDesiredDeliveryDateFail,
+    createStripeSessionFail // Nice update
   ),
 
   on(loadBasketSuccess, createBasketSuccess, mergeBasketSuccess, (state, action): BasketState => {
@@ -328,6 +349,41 @@ export const basketReducer = createReducer(
       info: undefined,
       promotionError: undefined,
       validationResults: initialValidationResults,
+    })
+  ), // Nice update
+  on(
+    createStripeSessionSuccess,
+    (state, action): BasketState => ({
+      ...state,
+      stripeInfo: action.payload.stripeInfo,
+    })
+  ),
+  on(
+    createStripeSessionFail,
+    (state): BasketState => ({
+      ...state,
+      stripeInfo: undefined,
+    })
+  ),
+  on(
+    clearStripeSession,
+    (state): BasketState => ({
+      ...state,
+      stripeInfo: undefined,
+    })
+  ),
+  on(
+    getStripeApiKeySuccess,
+    (state, action): BasketState => ({
+      ...state,
+      stripeApiKey: action.payload.stripeApiKey,
+    })
+  ),
+  on(
+    getStripeApiKeyFail,
+    (state): BasketState => ({
+      ...state,
+      stripeApiKey: undefined,
     })
   )
 );
