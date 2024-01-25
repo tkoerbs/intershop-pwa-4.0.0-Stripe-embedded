@@ -147,15 +147,20 @@ export class BasketValidationEffects {
           )
           .pipe(
             withLatestFrom(this.store.pipe(select(getCurrentBasket))),
-            concatMap(([basketValidation, basket]) =>
-              basketValidation.results.valid
+            concatMap(([basketValidation, basket]) => {
+              // Nice update
+              if (targetStep === CheckoutStepType.Payment && basketValidation.results.adjusted) {
+                basketValidation.results.valid = true;
+                basketValidation.results.adjusted = false;
+              }
+              return basketValidation.results.valid
                 ? targetStep === CheckoutStepType.Receipt && !basketValidation.results.adjusted
                   ? basket.approval?.approvalRequired
                     ? [continueCheckoutSuccess({ targetRoute: undefined, basketValidation }), submitBasket()]
                     : [continueCheckoutSuccess({ targetRoute: undefined, basketValidation }), createOrder()]
                   : [continueCheckoutSuccess({ targetRoute, basketValidation })]
-                : [continueCheckoutWithIssues({ targetRoute, basketValidation })]
-            ),
+                : [continueCheckoutWithIssues({ targetRoute, basketValidation })];
+            }),
             mapErrorToAction(continueCheckoutFail)
           );
       })
@@ -218,12 +223,15 @@ export class BasketValidationEffects {
       if (!scopes?.length) {
         scopes = this.extractScopes(results.infos);
       }
+
       let foundKey = Object.keys(this.validationSteps).find(
         key => intersection(this.validationSteps[key].scopes, scopes).length
       );
+
       if (foundKey === CheckoutStepType.Payment.toString()) {
         foundKey = CheckoutStepType.Review.toString();
       }
+
       const foundStep = this.validationSteps[foundKey];
 
       if (foundStep) {
