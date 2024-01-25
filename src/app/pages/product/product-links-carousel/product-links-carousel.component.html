@@ -1,0 +1,17 @@
+<ng-container *ngIf="productSKUs$ | async as productSKUs">
+  <div *ngIf="productSKUs.length" class="product-list-container">
+    <h2>{{ productLinkTitle }}</h2>
+
+    <div class="product-list">
+      <swiper [config]="swiperConfig">
+        <ng-template *ngFor="let sku$ of productSKUs" swiperSlide let-data>
+          <ish-product-item
+            *ngIf="lazyFetch(data.isVisible, sku$) | async as sku"
+            ishProductContext
+            [sku]="sku"
+          ></ish-product-item>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+</ng-container>

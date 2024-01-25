@@ -1,0 +1,33 @@
+<div>
+  <a
+    *ngIf="link; else image"
+    data-testing-id="product-image-link"
+    [routerLink]="linkTarget || (productURL$ | async)"
+    [queryParamsHandling]="computedQueryParamsHandling"
+    ><ng-container *ngTemplateOutlet="image"></ng-container>
+  </a>
+</div>
+
+<ng-template #image>
+  <ng-container *ngIf="productImage$ | async as image; else noImage">
+    <img
+      *ngIf="image.effectiveUrl; else noImage"
+      loading="lazy"
+      class="product-image"
+      [src]="image.effectiveUrl"
+      [attr.height]="image.imageActualHeight"
+      [attr.width]="image.imageActualWidth"
+      [attr.alt]="altText || (defaultAltText$ | async)"
+      itemprop="image"
+    />
+  </ng-container>
+
+  <ng-template #noImage>
+    <img
+      loading="lazy"
+      class="product-image"
+      src="/assets/img/not-available.svg"
+      [attr.alt]="'product.image.not_available.alttext' | translate"
+    />
+  </ng-template>
+</ng-template>

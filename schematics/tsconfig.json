@@ -1,0 +1,29 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "rootDir": "src/",
+    "lib": ["es2017", "dom"],
+    "target": "es2015",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": false,
+    "strictFunctionTypes": false,
+    "noEmitOnError": false,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "types": ["jest", "jest-extended", "node"],
+    // @lint rules
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    // "noUnusedLocals": true,
+    "paths": {
+      "schemas/*": ["dist/*"],
+      "tslib": ["node_modules/tslib/tslib.d.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/*/files/**/*", "src/*/other-files/**/*"]
+}

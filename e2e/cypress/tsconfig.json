@@ -1,0 +1,11 @@
+{
+  "include": ["pages/**/*.ts", "framework/*.ts", "support/*.ts", "e2e/**/*.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "outDir": "../node_modules/.out-tsc",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "types": ["node", "cypress"]
+  }
+}

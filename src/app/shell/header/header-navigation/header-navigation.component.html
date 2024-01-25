@@ -1,0 +1,33 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<ul class="navbar-nav main-navigation-list">
+  <li
+    *ngFor="let category of categories$ | async"
+    #subMenu
+    class="dropdown"
+    [ngClass]="{ open: isOpened(category.uniqueId) }"
+    (mouseenter)="subMenuShow(subMenu)"
+    (mouseleave)="subMenuHide(subMenu)"
+    (click)="subMenuHide(subMenu)"
+  >
+    <a
+      [routerLink]="category.url"
+      [attr.data-testing-id]="category.uniqueId + '-link'"
+      [ngStyle]="{ width: !(0 < mainNavigationMaxSubCategoriesDepth && category.hasChildren) ? '100%' : '' }"
+      class="main-navigation-link"
+    >
+      {{ category.name }}
+    </a>
+    <ng-container *ngIf="0 < mainNavigationMaxSubCategoriesDepth && category.hasChildren">
+      <a [routerLink]="[]" class="dropdown-toggle" (click)="toggleOpen(category.uniqueId)">
+        <fa-icon *ngIf="isOpened(category.uniqueId); else closed" [icon]="['fas', 'minus']"></fa-icon>
+        <ng-template #closed> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </ng-template>
+      </a>
+      <ish-sub-category-navigation
+        [categoryUniqueId]="category.uniqueId"
+        [subCategoriesDepth]="1"
+        [view]="view"
+      ></ish-sub-category-navigation>
+    </ng-container>
+  </li>
+  <ish-lazy-content-include includeId="include.header.navigation.pagelet2-Include"></ish-lazy-content-include>
+</ul>

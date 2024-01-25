@@ -1,0 +1,58 @@
+//
+// ACCOUNT NAVIGATION
+
+.account-navigation {
+  li {
+    background: $color-tertiary;
+
+    &:hover {
+      background: darken($color-tertiary, 10%) none repeat scroll 0 0;
+    }
+
+    &.account-nav-header {
+      padding: divide($space-default * 2, 3) divide($space-default * 2, 3) ($space-default * 0.5);
+      font-size: 16px;
+      color: $text-color-inverse;
+      cursor: pointer;
+      background: $CORPORATE-PRIMARY;
+    }
+
+    .ng-fa-icon {
+      margin-right: ($space-default * 0.5);
+    }
+
+    a {
+      display: block;
+      padding: divide($space-default * 2, 3) divide($space-default * 2, 3) ($space-default * 0.5);
+      font-size: 14px;
+      color: $link-color;
+    }
+
+    &.active {
+      background: $color-inverse;
+      border-left: $border-width-default solid $color-tertiary;
+
+      a {
+        color: $text-color-primary;
+      }
+    }
+
+    &.account-welcome {
+      padding: divide($space-default * 2, 3) divide($space-default * 2, 3) ($space-default * 0.5);
+
+      &:hover {
+        background: $color-tertiary;
+      }
+    }
+  }
+}
+
+.account-nav-box {
+  @media (max-width: $screen-sm-max) {
+    padding-top: $space-default;
+    padding-bottom: $space-default;
+    margin-top: -15px;
+    margin-bottom: ($space-default * 1.5);
+    background: $color-tertiary;
+  }
+}

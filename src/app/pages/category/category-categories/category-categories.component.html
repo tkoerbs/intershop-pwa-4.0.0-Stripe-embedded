@@ -1,0 +1,57 @@
+<div class="category-page" [attr.data-testing-id]="category.uniqueId">
+  <div class="marketing-area">
+    <ish-content-viewcontext
+      *ngIf="category.categoryRef"
+      viewContextId="viewcontext.include.category.base.top"
+      [callParameters]="{ Category: category.categoryRef }"
+    ></ish-content-viewcontext>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="navigation-panel" [ngbCollapse]="isCollapsed">
+        <ish-category-navigation [uniqueId]="category.categoryPath[0]"></ish-category-navigation>
+        <div class="marketing-area">
+          <ish-content-viewcontext
+            *ngIf="category.categoryRef"
+            viewContextId="viewcontext.include.category.navigation"
+            [callParameters]="{ Category: category.categoryRef }"
+          ></ish-content-viewcontext>
+        </div>
+      </div>
+      <a [routerLink]="[]" class="d-md-none mobile-filter-toggle" (click)="toggle()">
+        {{ 'search.mobile.filter.trigger' | translate }}
+        <fa-icon [icon]="['fas', isCollapsed ? 'angle-down' : 'angle-up']"></fa-icon>
+      </a>
+    </div>
+
+    <div class="col-md-9">
+      <ish-breadcrumb></ish-breadcrumb>
+      <h1>{{ category.name }}</h1>
+
+      <div class="marketing-area">
+        <ish-content-viewcontext
+          *ngIf="category.categoryRef"
+          viewContextId="viewcontext.include.category.content.top"
+          [callParameters]="{ Category: category.categoryRef }"
+        ></ish-content-viewcontext>
+      </div>
+
+      <ish-category-list [categories]="category.children"></ish-category-list>
+
+      <div class="marketing-area">
+        <ish-content-viewcontext
+          *ngIf="category.categoryRef"
+          viewContextId="viewcontext.include.category.content.bottom"
+          [callParameters]="{ Category: category.categoryRef }"
+        ></ish-content-viewcontext>
+      </div>
+    </div>
+  </div>
+  <div class="marketing-area">
+    <ish-content-viewcontext
+      *ngIf="category.categoryRef"
+      viewContextId="viewcontext.include.category.base.bottom"
+      [callParameters]="{ Category: category.categoryRef }"
+    ></ish-content-viewcontext>
+  </div>
+</div>

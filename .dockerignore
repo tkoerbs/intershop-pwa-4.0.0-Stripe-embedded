@@ -1,0 +1,168 @@
+# dockerignore-update:start
+
+# The content between these markers is generated.
+# It can be synchronized using 'npm run update-dockerignore'
+
+# from .gitignore
+**/*.xliff
+**/*.ut.spec.ts*
+**/node_modules
+/.idea
+/.project
+/.classpath
+/.c9/
+**/*.launch
+/.settings/
+/*.sublime-workspace
+/.nb-gradle
+/nbproject/
+/.nvmrc
+/.vim/
+/.angular/cache
+**/*.log
+/src/environments/environment.local.ts
+/src/environments/environment.development.ts
+**/.DS_Store
+**/Thumbs.db
+**/**~
+**/*.bak
+**/*.rej
+**/*.orig
+/dev.bat
+
+# from dist/.gitignore
+/dist/**/*
+!/dist/.gitignore
+!/dist/entrypoint.sh
+!/dist/healthcheck.js
+!/dist/robots.txt
+
+# from docs/.gitignore
+/docs/compodoc
+
+# from e2e/.gitignore
+/e2e/node_modules
+/e2e/reports
+
+# from eslint-rules/.gitignore
+/eslint-rules/node_modules
+/eslint-rules/package-lock.json
+/eslint-rules/dist
+
+# from reports/.gitignore
+/reports/junit.xml
+/reports/unit-tests.html
+/reports/coverage
+/reports/e2e
+/reports/eslint
+/reports/bundle
+/reports/jscpd
+/reports/licenses
+/reports/e2e-*.xml
+
+# from schematics/.gitignore
+/schematics/dist
+/schematics/package-lock.json
+
+# from e2e/cypress/.gitignore
+/e2e/cypress/videos
+/e2e/cypress/screenshots
+/e2e/cypress/logs
+
+# from node_modules/eslint-plugin-ish-custom-rules/.gitignore
+/node_modules/eslint-plugin-ish-custom-rules/node_modules
+/node_modules/eslint-plugin-ish-custom-rules/package-lock.json
+/node_modules/eslint-plugin-ish-custom-rules/dist
+
+# from node_modules/intershop-schematics/.gitignore
+/node_modules/intershop-schematics/dist
+/node_modules/intershop-schematics/package-lock.json
+
+# from src/ssr/server-scripts/.gitignore
+/src/ssr/server-scripts/ecosystem-ports.json
+
+# from src/app/shell/shared/.gitignore
+/src/app/shell/shared/**/lazy*
+
+# from projects/organization-management/src/app/exports/.gitignore
+/projects/organization-management/src/app/exports/**/lazy*
+
+# from projects/requisition-management/src/app/exports/.gitignore
+/projects/requisition-management/src/app/exports/**/lazy*
+
+# from src/app/extensions/compare/exports/.gitignore
+/src/app/extensions/compare/exports/**/lazy*
+
+# from src/app/extensions/order-templates/exports/.gitignore
+/src/app/extensions/order-templates/exports/**/lazy*
+
+# from src/app/extensions/product-notifications/exports/.gitignore
+/src/app/extensions/product-notifications/exports/**/lazy*
+
+# from src/app/extensions/punchout/exports/.gitignore
+/src/app/extensions/punchout/exports/**/lazy*
+
+# from src/app/extensions/quickorder/exports/.gitignore
+/src/app/extensions/quickorder/exports/**/lazy*
+
+# from src/app/extensions/quoting/exports/.gitignore
+/src/app/extensions/quoting/exports/**/lazy*
+
+# from src/app/extensions/rating/exports/.gitignore
+/src/app/extensions/rating/exports/**/lazy*
+
+# from src/app/extensions/recently/exports/.gitignore
+/src/app/extensions/recently/exports/**/lazy*
+
+# from src/app/extensions/store-locator/exports/.gitignore
+/src/app/extensions/store-locator/exports/**/lazy*
+
+# from src/app/extensions/tacton/exports/.gitignore
+/src/app/extensions/tacton/exports/**/lazy*
+
+# from src/app/extensions/wishlists/exports/.gitignore
+/src/app/extensions/wishlists/exports/**/lazy*
+
+# from schematics/src/extension/files/__name@dasherize__/exports/.gitignore
+/schematics/src/extension/files/__name@dasherize__/exports/**/lazy*
+
+# The content between these markers is generated.
+# It can be synchronized using 'npm run update-dockerignore'
+
+# dockerignore-update:end
+
+e2e
+nginx
+docs
+reports
+*.md
+*.txt
+
+/projects/*/*.*
+/projects/*/src/*.*
+
+**/dev
+
+**/*spec.ts
+**/setupJest.*
+**/jest*
+**/__snapshots__
+
+.dockerignore
+Dockerfile*
+docker-compose*
+.git
+.gitattributes
+**/.gitignore
+azure-pipelines*
+
+src/assets/mock-data
+
+templates
+!templates/webpack
+!templates/nginx.conf
+
+scripts
+!scripts/build*pwa.js
+!scripts/init-development-environment.js
+!scripts/compile-docker-scripts.js

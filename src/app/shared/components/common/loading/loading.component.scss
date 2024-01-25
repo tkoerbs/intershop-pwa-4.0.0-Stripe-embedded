@@ -1,0 +1,19 @@
+.loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  min-width: 50px;
+  min-height: 50px;
+  background: #fff url('/assets/img/loading.gif') center center no-repeat;
+  opacity: 0.5;
+}
+
+.loading-wrapper {
+  position: relative;
+  min-width: 50px;
+  min-height: 50px;
+
+  .loading {
+    opacity: 1;
+  }
+}

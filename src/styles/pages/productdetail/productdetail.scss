@@ -1,0 +1,147 @@
+//
+// PRODUCT DETAILS
+
+.product-page {
+  padding: $space-default 0 $space-default 0;
+}
+
+.product-details {
+  padding: 0 0 $space-default * 3 0;
+
+  .label-quantity {
+    padding-top: 7px;
+  }
+
+  .product-image-container {
+    // set for the correct product label ribbon positioning in the PDP only
+    position: relative;
+  }
+}
+
+.bundled-product-list,
+.retail-product-list {
+  margin-bottom: $space-default;
+}
+
+.product-details-top-line {
+  margin-bottom: ($space-default * 3);
+
+  @media (max-width: $screen-sm-max) {
+    margin-top: divide($space-default, 3);
+    margin-bottom: ($space-default);
+  }
+
+  .product-rating {
+    float: right;
+
+    .rating-display {
+      margin-left: $space-default;
+    }
+  }
+}
+
+.product-photo {
+  float: left;
+}
+
+.product-alt-images {
+  float: left;
+
+  .product-alt-images-list {
+    float: left;
+    padding-left: 0;
+    list-style: none;
+
+    .product-alt-images-list-item {
+      padding: $space-default;
+      margin-bottom: $space-default;
+      border: 1px solid $border-color-lighter;
+    }
+  }
+}
+
+.tab-pane {
+  padding-top: $space-default;
+}
+
+.panel-group {
+  margin: $space-default 0;
+
+  .panel-heading {
+    padding: divide($space-default, 3) 0;
+
+    a {
+      color: $text-color-quaternary;
+
+      &:hover {
+        color: darken($text-color-quaternary, 10%);
+      }
+    }
+
+    + .panel-collapse {
+      .panel-body {
+        border-top: none;
+      }
+    }
+  }
+
+  .panel-body {
+    padding: $space-default 0;
+    color: $text-color-primary;
+
+    .product-attachment {
+      margin-bottom: $space-default;
+
+      .product-attachment-description {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.product-warranty {
+  margin-top: $space-default;
+  font-family: $font-family-regular;
+  color: $text-color-primary;
+
+  .product-warranty-title {
+    font-weight: bold;
+  }
+
+  .product-warranty-list {
+    margin-top: divide($space-default, 3);
+  }
+}
+
+.product-attributes {
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) auto;
+  width: 100%;
+
+  dt,
+  dd {
+    padding: divide($space-default, 3) $space-default;
+    margin: 0;
+  }
+
+  dt:nth-child(4n + 1),
+  dt:nth-child(4n + 1) + dd {
+    background-color: $color-tertiary;
+  }
+}
+
+.table-compare {
+  .product-attributes {
+    grid-template-columns: none;
+
+    dt,
+    dd {
+      padding: 0;
+      background-color: transparent !important;
+    }
+
+    dd {
+      margin-bottom: $space-default * 0.5;
+    }
+  }
+}

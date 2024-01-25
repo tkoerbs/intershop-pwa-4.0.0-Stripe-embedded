@@ -1,0 +1,19 @@
+<!-- Error message -->
+<ish-error-message [error]="error"></ish-error-message>
+
+<!-- Info messages -->
+<ish-basket-info></ish-basket-info>
+
+<!-- Validation messages-->
+<ish-basket-validation-results></ish-basket-validation-results>
+
+<div class="empty-cart">
+  <fa-icon [icon]="['fas', 'shopping-cart']" class="empty-cart-icon"></fa-icon>
+  <span class="empty-cart-icon-text">{{ 'shopping_cart.empty.zero.text' | translate }}</span>
+
+  <h2>{{ 'shopping_cart.empty.text' | translate }}</h2>
+
+  <a routerLink="/home" class="btn btn-primary btn-lg">{{
+    'shopping_cart.detailed.continue_shopping.link' | translate
+  }}</a>
+</div>

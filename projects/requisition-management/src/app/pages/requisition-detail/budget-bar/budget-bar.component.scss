@@ -1,0 +1,61 @@
+.budget-bar {
+  position: relative;
+  display: flex;
+  height: 25px;
+  overflow: hidden;
+  font-size: inherit;
+  line-height: 0;
+  background-color: #fff;
+
+  .budget-bar-used {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+  }
+
+  .budget-bar-used-additional {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+  }
+}
+
+.budget-bar-overflow {
+  position: relative;
+
+  .overflow-indicator {
+    position: absolute;
+    z-index: 1;
+    height: 30px;
+    margin-top: -7px;
+
+    &::before {
+      // small arrow budget bar indicator
+      position: absolute;
+      top: 0;
+      right: -3px;
+      width: 0;
+      height: 0;
+      content: '';
+      border-top: 6px solid #2f2f2f;
+      border-right: 6px solid transparent;
+      border-left: 6px solid transparent;
+    }
+
+    .overflow-display {
+      float: right;
+      margin-top: -18px;
+      margin-right: -17px;
+      visibility: hidden;
+    }
+  }
+}

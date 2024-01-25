@@ -1,0 +1,109 @@
+# export appropriate ICM_BASE_URL and use with
+# docker compose up --build
+
+version: '3'
+services:
+  pwa:
+    build:
+      context: .
+      # dockerfile: Dockerfile_noSSR
+      args:
+        serviceWorker: 'false'
+        # activeThemes: b2b
+        # activeThemes: b2c
+    environment:
+      LOGGING: 'true'
+      SOURCE_MAPS: 'true'
+      ICM_BASE_URL:
+      # PROXY_ICM: 'true'
+      TRUST_ICM: 'true'
+      # PROMETHEUS: 'true'
+      # MULTI_SITE_LOCALE_MAP: |
+      #   en_US: /en
+      #   de_DE: /de
+      #   fr_FR: /fr
+      # FEATURES: |
+      #   - compare
+      #   - rating
+      # IDENTITY_PROVIDER: 'Auth0'
+      # IDENTITY_PROVIDERS: |
+      #   Auth0:
+      #     type: auth0
+      #     domain: some-domain.auth0.com
+      #     clientID: ASDF12345
+      #   Punchout:
+      #     type: PUNCHOUT
+
+  # <CDN-Example>
+  # add 127.0.0.1 mypwa.net to your hosts file and
+  # uncomment the following lines
+  #
+  #     - DEPLOY_URL=http://mypwa.net:4222
+  # cdn:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile_noSSR
+  #     args:
+  #       configuration: production
+  #       serviceWorker: 'false'
+  #       deployUrl: http://mypwa.net:4222
+  #   ports:
+  #     - '4222:4200'
+  #
+  # </CDN-Example>
+
+  nginx:
+    build: nginx
+    depends_on:
+      - pwa
+    ports:
+      - '4200:80'
+      # - '4200:443'
+      # - '9113:9113'
+    #
+    # Uncomment this if you want the containers CA to be available on your local machine
+    # 1.) provide below adjusted volume mapping
+    # 2.) download and install mkcert -> https://github.com/FiloSottile/mkcert
+    # 3.) `export CAROOT=/home/your-user/ca-dir`
+    # 4.) `mkcert -install`
+    #
+    # For more details have a look at https://github.com/FiloSottile/mkcert#installing-the-ca-on-other-systems
+    #
+    # hostname: 'your-local-host-name-with-fqdn'
+    # volumes:
+    #  - /home/your-user/ca-dir:/root/.local/share/mkcert
+    environment:
+      UPSTREAM_PWA: 'http://pwa:4200'
+      # DEBUG: 1
+      NGINX_ENTRYPOINT_QUIET_LOGS: ANYVALUE
+      CACHE: 0
+      SSR: 1
+      SSL: 0
+      # PROMETHEUS: 1
+      # COMPRESSION: 0
+      # DEVICE_DETECTION: 0
+      # CACHING_IGNORE_PARAMS: |
+      #   params:
+      # MULTI_CHANNEL_SOURCE: env:///ASDF?type=application/yaml
+      # BASIC_AUTH: 'developer:!InterShop00!'
+      # BASIC_AUTH_IP_WHITELIST: |
+      #   # - 172.22.0.1
+      #   - 1.2.3.4
+      # OVERRIDE_IDENTITY_PROVIDERS: |
+      #   .+:
+      #     - path: /en/punchout
+      #       type: Punchout
+      MULTI_CHANNEL: |
+        .+:
+          - baseHref: /en
+            channel: default
+            lang: en_US
+          - baseHref: /de
+            channel: default
+            lang: de_DE
+          - baseHref: /fr
+            channel: default
+            lang: fr_FR
+          - baseHref: /b2c
+            channel: default
+            theme: b2c

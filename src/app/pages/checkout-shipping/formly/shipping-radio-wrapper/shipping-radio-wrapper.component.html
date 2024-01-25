@@ -1,0 +1,14 @@
+<div class="form-check" [class.has-error]="showError">
+  <ng-template #fieldComponent></ng-template>
+  <label class="form-check-label" [for]="props.id" [ngClass]="props.labelClass">
+    <ish-shipping-info [shippingMethodId]="props.value"></ish-shipping-info>
+    <a *ngIf="props.description" class="details-tooltip" [ngbPopover]="ShippingMethodDescription" placement="top">
+      {{ 'checkout.detail.text' | translate }}
+      <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
+    </a>
+  </label>
+</div>
+
+<ng-template #ShippingMethodDescription>
+  <span [innerHTML]="props.description"></span>
+</ng-template>

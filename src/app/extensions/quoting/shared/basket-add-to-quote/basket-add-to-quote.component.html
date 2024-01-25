@@ -1,0 +1,21 @@
+<ng-container *ngIf="isLoggedIn$ | async; else loginButton">
+  <a
+    *ishHasNotRole="['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER']"
+    [routerLink]="[]"
+    class="btn btn-secondary"
+    data-testing-id="create-quote-from-basket"
+    (click)="addToQuote()"
+  >
+    {{ 'shopping_cart.quote.create.button' | translate }}
+  </a>
+</ng-container>
+<ng-template #loginButton>
+  <button
+    data-testing-id="create-quote-from-basket"
+    class="btn btn-secondary"
+    [title]="'account.login.quotes.message' | translate"
+    (click)="login()"
+  >
+    {{ 'shopping_cart.quote.create.button' | translate }}
+  </button>
+</ng-template>

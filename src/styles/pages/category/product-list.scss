@@ -1,0 +1,369 @@
+//
+// PRODUCT LIST
+
+.product-list {
+  position: relative;
+  padding: 0;
+  margin: 0;
+
+  .product-tile {
+    position: relative;
+    text-align: center;
+
+    img {
+      width: auto;
+      padding-bottom: 0;
+    }
+
+    .product-variation-container {
+      width: 100%;
+
+      .product-variation {
+        display: inline-block;
+        width: 60%;
+        text-align: left;
+
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
+
+        &.read-only {
+          text-align: center;
+        }
+
+        .form-group {
+          margin-bottom: divide($space-default, 3);
+
+          label {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .product-tile-list {
+    a {
+      &.product-title {
+        padding-top: 0;
+        text-align: left;
+      }
+    }
+
+    .product-tile-actions {
+      position: relative;
+
+      .btn {
+        padding: 0 12px 3px 0;
+      }
+    }
+
+    .product-variation-container {
+      width: 100%;
+
+      .product-variation {
+        display: inline-block;
+        width: 100%;
+        text-align: right;
+
+        @include media-breakpoint-down(sm) {
+          text-align: left;
+        }
+
+        .form-group {
+          margin-right: 0;
+          margin-bottom: $space-default * 0.5;
+          margin-left: 0;
+
+          label {
+            width: 100%;
+            padding-top: 0;
+            padding-bottom: 0;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  .product-list-item {
+    position: relative;
+    min-height: 100px;
+    padding-right: $space-default;
+    padding-bottom: ($space-default * 2);
+    padding-left: $space-default;
+    list-style-type: none;
+    outline: none;
+
+    &.grid-view {
+      &:nth-child(2n + 1) {
+        clear: both;
+      }
+
+      @media (min-width: $screen-md-min) {
+        &:nth-child(2n + 1) {
+          clear: none;
+        }
+
+        &:nth-child(3n + 1) {
+          clear: both;
+        }
+      }
+    }
+
+    &.list-view {
+      width: 100%;
+    }
+  }
+
+  a {
+    &.product-title {
+      display: block;
+      padding-top: $space-default;
+      font-family: $font-family-condensedregular;
+      font-size: $font-size-lg;
+      color: $text-color-primary;
+      text-align: center;
+      text-decoration: none !important;
+    }
+  }
+
+  .product-tile-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    background-color: $white;
+
+    .btn,
+    a {
+      padding: 3px 6px;
+      font-size: $font-size-lg;
+
+      @media (hover: none) {
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .add-to-cart,
+    .add-to-wishlist,
+    .add-to-compare {
+      margin-right: 0;
+
+      &.is-selected {
+        color: $text-muted;
+      }
+    }
+  }
+
+  .product-list-loading {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+  }
+}
+
+.scaled-prices {
+  margin-bottom: $space-default;
+  font-family: $font-family-condensedregular;
+  color: $text-color-quaternary;
+}
+
+.filtered-products {
+  .product-list {
+    .product-list-item {
+      &.grid-view {
+        &:nth-child(2n + 1) {
+          clear: both;
+        }
+
+        @media (min-width: $screen-md-min) {
+          &:nth-child(2n + 1),
+          &:nth-child(3n + 1) {
+            clear: none;
+          }
+
+          &:nth-child(4n + 1) {
+            clear: both;
+          }
+        }
+      }
+    }
+  }
+}
+
+.product-list-container {
+  @include clearfix();
+
+  padding-bottom: ($space-default * 2);
+
+  a.view-all {
+    display: block;
+    clear: both;
+  }
+}
+
+/* purgecss start ignore */
+
+.product-label {
+  position: absolute;
+  top: 90px;
+  left: -6px;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  padding: 0 20px;
+  font-family: $font-family-condensedregular;
+  font-size: 20px;
+  color: $text-color-inverse;
+
+  &::before {
+    // CSS ribbon instead of an image
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    display: block;
+    content: '';
+    border-style: solid;
+    border-width: 6px 0 0 6px;
+  }
+
+  &.product-label-new {
+    background-color: $color-label-new;
+
+    &::before {
+      // ribbon color
+      border-color: darken($color-label-new, 20%) transparent transparent;
+    }
+  }
+
+  &.product-label-topseller {
+    background-color: $color-label-topseller;
+
+    &::before {
+      // ribbon color
+      border-color: darken($color-label-topseller, 20%) transparent transparent;
+    }
+  }
+
+  &.product-label-sale {
+    background-color: $color-label-sale;
+
+    &::before {
+      // ribbon color
+      border-color: darken($color-label-sale, 20%) transparent transparent;
+    }
+  }
+}
+
+.list-view {
+  .product-label {
+    top: 15px;
+  }
+}
+
+/* purgecss end ignore */
+
+.full-page-grid-view-product-list {
+  .product-list:not(.slick-carousel) {
+    .product-list-item {
+      &:nth-child(2n + 1) {
+        clear: both;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        &:nth-child(2n + 1) {
+          clear: none;
+        }
+
+        &:nth-child(3n + 1) {
+          clear: both;
+        }
+      }
+
+      @media (min-width: $screen-md-min) {
+        &:nth-child(2n + 1) {
+          clear: none;
+        }
+
+        &:nth-child(3n + 1) {
+          clear: none;
+        }
+
+        &:nth-child(4n + 1) {
+          clear: both;
+        }
+      }
+    }
+  }
+}
+
+/* product tile effects */
+.product-tile {
+  .product-image {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .product-tile-actions {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    @media (hover: none) {
+      opacity: 0.85;
+    }
+
+    @media (-moz-touch-enabled) {
+      opacity: 0.85;
+    }
+  }
+
+  &:hover {
+    .product-tile-actions {
+      opacity: 0.85;
+    }
+
+    .product-image {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.product-variation {
+  &.read-only {
+    label {
+      padding-right: divide($space-default, 3);
+      margin-bottom: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: divide($space-default * 2, 3);
+    }
+  }
+}
+
+.product-list-actions-container {
+  .action-container {
+    margin-top: $space-default * 0.5;
+  }
+
+  .product-quantity .form-group {
+    @include media-breakpoint-down(lg) {
+      margin-bottom: 0;
+    }
+  }
+
+  .addtocart-container {
+    @include media-breakpoint-up(lg) {
+      padding-left: 0;
+    }
+
+    .add-to-cart button {
+      width: 100%;
+    }
+  }
+}
